@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum RNG</title>
+    <style>
+        /* Reset default margins */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            text-align: center;
+            width: 350px;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            color: #f5a623;
+        }
+
+        form input[type="number"] {
+            width: 80%;
+            padding: 8px 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+
+        form input[type="submit"] {
+            background: #f5a623;
+            color: #000;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        form input[type="submit"]:hover {
+            background: #fff;
+            color: #2575fc;
+            transform: scale(1.05);
+        }
+
+        ul {
+            margin-top: 20px;
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #2575fc;
+            padding: 6px 12px;
+            margin: 6px 0;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        label {
+            display: block;
+            margin-top: 8px;
+            margin-bottom: 2px;
+            font-size: 0.95em;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            margin-left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quantum RNG</h1>
+        <form method="POST">
+            <label>Number of Random Numbers:</label>
+            <input type="number" name="size" value="10" min="1" max="100" required>
+
+            <label>Minimum Value:</label>
+            <input type="number" name="low" value="1" required>
+
+            <label>Maximum Value:</label>
+            <input type="number" name="high" value="100" required>
+
+            <label>
+                <input type="checkbox" name="download" value="yes">
+                Download as CSV
+            </label>
+
+            <input type="submit" value="Generate">
+        </form>
+
+        {% if numbers %}
+        <h2>Generated Numbers:</h2>
+        <ul>
+            {% for n in numbers %}
+            <li>{{ n }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
